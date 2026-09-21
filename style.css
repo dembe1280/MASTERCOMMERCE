@@ -1,0 +1,1234 @@
+/* =========================================
+   MASTERCOMMERCE
+   BY PD DEVELOPERS
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: #ffffff;
+    --sidebar: #f7f7f8;
+    --border: #e5e5e5;
+    --text: #171717;
+    --muted: #6b6b6b;
+    --hover: #eeeeee;
+    --black: #171717;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   SIDEBAR
+   ========================================= */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 260px;
+    height: 100vh;
+
+    background: var(--sidebar);
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 14px;
+
+    z-index: 1000;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* BRAND */
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 8px 6px 18px;
+}
+
+.brand-logo {
+    width: 34px;
+    height: 34px;
+
+    background: var(--black);
+
+    color: white;
+
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+
+    font-size: 17px;
+}
+
+.brand h2 {
+    font-size: 15px;
+
+    font-weight: 650;
+
+    line-height: 1.2;
+}
+
+.brand span {
+    display: block;
+
+    font-size: 11px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+}
+
+
+/* NEW CHAT */
+
+.new-chat {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 10px 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    color: var(--text);
+
+    transition: 0.2s;
+}
+
+.new-chat span {
+    font-size: 20px;
+
+    line-height: 1;
+}
+
+.new-chat:hover {
+    background: var(--hover);
+}
+
+
+/* MENU */
+
+.menu {
+    margin-top: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.menu-item {
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    border-radius: 8px;
+
+    padding: 10px 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    color: #404040;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.menu-item span {
+    width: 20px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+.menu-item:hover {
+    background: var(--hover);
+}
+
+.menu-item.active {
+    background: #e8e8e8;
+
+    color: #111111;
+
+    font-weight: 550;
+}
+
+
+/* SIDEBAR BOTTOM */
+
+.sidebar-bottom {
+    margin-top: auto;
+}
+
+.version {
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #999;
+
+    padding-top: 12px;
+}
+
+
+/* =========================================
+   MAIN
+   ========================================= */
+
+.main {
+    margin-left: 260px;
+
+    min-height: 100vh;
+
+    position: relative;
+}
+
+
+/* =========================================
+   TOPBAR
+   ========================================= */
+
+.topbar {
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+}
+
+.menu-button {
+    display: none;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    padding: 7px;
+
+    border-radius: 8px;
+}
+
+.menu-button:hover {
+    background: var(--hover);
+}
+
+.mobile-brand {
+    display: none;
+
+    font-size: 15px;
+}
+
+.profile-button {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: #eeeeee;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   PAGES
+   ========================================= */
+
+.page {
+    display: none;
+
+    min-height: calc(100vh - 58px);
+
+    padding: 45px 30px 150px;
+}
+
+.page.active-page {
+    display: block;
+}
+
+
+/* =========================================
+   WELCOME
+   ========================================= */
+
+.welcome {
+    max-width: 700px;
+
+    margin: 45px auto 35px;
+
+    text-align: center;
+}
+
+.welcome-logo {
+    width: 54px;
+    height: 54px;
+
+    margin: 0 auto 22px;
+
+    border-radius: 15px;
+
+    background: var(--black);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.welcome h1 {
+    font-size: 28px;
+
+    font-weight: 650;
+
+    letter-spacing: -0.6px;
+
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: var(--muted);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   SUBJECTS
+   ========================================= */
+
+.subjects {
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.subject-card {
+    position: relative;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    min-height: 125px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 14px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #cfcfcf;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.subject-card h3 {
+    font-size: 15px;
+
+    margin-bottom: 6px;
+}
+
+.subject-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    max-width: 300px;
+}
+
+
+/* =========================================
+   ICONS
+   ========================================= */
+
+.subject-icon {
+    min-width: 40px;
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+.accounting-icon {
+    background: #f0f0f0;
+
+    color: #171717;
+}
+
+.economics-icon {
+    background: #f3f3f3;
+
+    color: #171717;
+}
+
+.mathematics-icon {
+    background: #eeeeee;
+
+    color: #171717;
+}
+
+.papers-icon {
+    background: #f5f5f5;
+
+    color: #171717;
+}
+
+.arrow {
+    position: absolute;
+
+    right: 16px;
+
+    bottom: 15px;
+
+    color: #999;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   CHAT AREA
+   ========================================= */
+
+.chat-area {
+    max-width: 850px;
+
+    margin: 35px auto 0;
+}
+
+.chat-box {
+    min-height: 56px;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 17px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    padding: 8px 9px 8px 16px;
+
+    background: white;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.03);
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.chat-box:focus-within {
+    border-color: #bcbcbc;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.chat-box textarea {
+    flex: 1;
+
+    resize: none;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 22px;
+
+    max-height: 150px;
+
+    padding: 8px 0;
+
+    color: var(--text);
+}
+
+.chat-box textarea::placeholder {
+    color: #999;
+}
+
+.send-button {
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #171717;
+
+    color: white;
+
+    font-size: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    flex-shrink: 0;
+}
+
+.send-button:hover {
+    transform: scale(1.04);
+
+    background: #333;
+}
+
+.disclaimer {
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #999;
+
+    margin-top: 9px;
+}
+
+
+/* =========================================
+   CHAT CONVERSATION
+   ========================================= */
+
+.conversation {
+    max-width: 850px;
+
+    margin: 20px auto 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.chat-message {
+    width: 100%;
+
+    display: flex;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+}
+
+.chat-message.user .message-content {
+    background: #f0f0f0;
+
+    border-radius: 16px 16px 4px 16px;
+
+    padding: 10px 14px;
+
+    max-width: 75%;
+}
+
+.chat-message.assistant {
+    justify-content: flex-start;
+}
+
+.chat-message.assistant .message-content {
+    max-width: 85%;
+
+    padding: 8px 4px;
+
+    white-space: pre-line;
+}
+
+.chat-message.assistant::before {
+    content: "M";
+
+    width: 28px;
+
+    height: 28px;
+
+    min-width: 28px;
+
+    background: #171717;
+
+    color: white;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-right: 10px;
+
+    margin-top: 2px;
+}
+
+
+/* =========================================
+   PAGE HEADERS
+   ========================================= */
+
+.page-header {
+    max-width: 900px;
+
+    margin: 20px auto 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+.large-icon {
+    min-width: 55px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 24px;
+
+    font-weight: 600;
+}
+
+.page-header h1 {
+    font-size: 25px;
+
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   TOPICS
+   ========================================= */
+
+.topic-grid {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.topic {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    min-height: 82px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.2s;
+}
+
+.topic:hover {
+    background: #fafafa;
+
+    border-color: #cfcfcf;
+
+    transform: translateY(-1px);
+}
+
+.topic strong {
+    font-size: 14px;
+}
+
+.topic span {
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 12px;
+}
+
+
+/* =========================================
+   PAST PAPERS SEARCH
+   ========================================= */
+
+.paper-search {
+    max-width: 900px;
+
+    margin: 0 auto 20px;
+
+    height: 48px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 15px;
+
+    gap: 10px;
+
+    background: white;
+}
+
+.paper-search span {
+    font-size: 22px;
+
+    color: #777;
+}
+
+.paper-search input {
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    background: transparent;
+}
+
+
+/* =========================================
+   FILTERS
+   ========================================= */
+
+.paper-filters {
+    max-width: 900px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    padding-bottom: 5px;
+}
+
+.filter {
+    white-space: nowrap;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.filter:hover {
+    background: var(--hover);
+}
+
+.filter.active {
+    background: #171717;
+
+    color: white;
+
+    border-color: #171717;
+}
+
+
+/* =========================================
+   PAPER TITLE
+   ========================================= */
+
+.paper-section-title {
+    max-width: 900px;
+
+    margin: 25px auto 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.paper-section-title h2 {
+    font-size: 16px;
+}
+
+.paper-section-title span {
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   PAPERS
+   ========================================= */
+
+.papers-container {
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+}
+
+.paper-card {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 13px;
+
+    padding: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    transition: 0.2s;
+}
+
+.paper-card:hover {
+    border-color: #c8c8c8;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.paper-icon {
+    width: 42px;
+
+    height: 42px;
+
+    min-width: 42px;
+
+    border-radius: 10px;
+
+    background: #f1f1f1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 19px;
+}
+
+.paper-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.paper-info h3 {
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.paper-info p {
+    color: #777;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+.paper-actions {
+    display: flex;
+
+    gap: 6px;
+}
+
+.paper-button {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    padding: 7px 10px;
+
+    border-radius: 8px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.paper-button:hover {
+    background: #f1f1f1;
+}
+
+.paper-button.primary {
+    background: #171717;
+
+    color: white;
+
+    border-color: #171717;
+}
+
+
+/* =========================================
+   EMPTY PAPERS
+   ========================================= */
+
+.empty-papers {
+    max-width: 600px;
+
+    margin: 80px auto;
+
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 40px;
+
+    margin-bottom: 15px;
+}
+
+.empty-papers h2 {
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+.empty-papers p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        transform: translateX(-100%);
+
+        box-shadow:
+            10px 0 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .mobile-brand {
+        display: block;
+    }
+
+    .topbar {
+        padding: 0 14px;
+    }
+
+    .page {
+        padding: 25px 16px 130px;
+    }
+
+    .welcome {
+        margin-top: 35px;
+    }
+
+    .welcome h1 {
+        font-size: 24px;
+    }
+
+    .welcome p {
+        font-size: 14px;
+    }
+
+    .subjects {
+        grid-template-columns: 1fr;
+    }
+
+    .subject-card {
+        min-height: 110px;
+    }
+
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header {
+        margin-top: 10px;
+    }
+
+    .page-header h1 {
+        font-size: 22px;
+    }
+
+    .papers-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media (max-width: 450px) {
+
+    .welcome-logo {
+        width: 48px;
+
+        height: 48px;
+
+        font-size: 21px;
+    }
+
+    .welcome h1 {
+        font-size: 22px;
+    }
+
+    .subject-card {
+        padding: 15px;
+    }
+
+    .subject-icon {
+        width: 36px;
+
+        min-width: 36px;
+
+        height: 36px;
+    }
+
+    .subject-card h3 {
+        font-size: 14px;
+    }
+
+    .subject-card p {
+        font-size: 12px;
+    }
+
+    .chat-area {
+        margin-top: 25px;
+    }
+
+    .chat-message.user .message-content {
+        max-width: 85%;
+    }
+
+    .chat-message.assistant .message-content {
+        max-width: calc(100% - 38px);
+    }
+
+}
