@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mastercommerce</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="brand">
+                <div class="brand-logo">M</div>
+
+                <div>
+                    <h2>Mastercommerce</h2>
+                    <span>by PD Developers</span>
+                </div>
+            </div>
+
+            <button class="new-chat" id="newChatButton">
+                + New chat
+            </button>
+
+            <nav class="navigation">
+
+                <button class="nav-item active">
+                    <span>⌂</span>
+                    Home
+                </button>
+
+                <button class="nav-item">
+                    <span>▣</span>
+                    Past Papers
+                </button>
+
+                <button class="nav-item">
+                    <span>⚙</span>
+                    Settings
+                </button>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <p>Mastercommerce</p>
+                <small>Learn smarter.</small>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- MOBILE HEADER -->
+            <header class="mobile-header">
+
+                <button id="menuButton" class="menu-button">
+                    ☰
+                </button>
+
+                <div class="mobile-brand">
+                    <strong>Mastercommerce</strong>
+                    <small>by PD Developers</small>
+                </div>
+
+            </header>
+
+
+            <!-- CHAT AREA -->
+            <section class="chat-container">
+
+                <div class="chat-messages" id="chatMessages">
+
+                    <!-- WELCOME -->
+                    <div class="welcome">
+
+                        <div class="welcome-logo">
+                            M
+                        </div>
+
+                        <h1>What would you like to learn?</h1>
+
+                        <p>
+                            Ask a question about Accounting, Economics
+                            or Mathematics.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INPUT AREA -->
+                <div class="input-area">
+
+                    <div class="input-box">
+
+                        <textarea
+                            id="chatInput"
+                            placeholder="Ask anything..."
+                            rows="1"
+                        ></textarea>
+
+                        <button
+                            id="sendButton"
+                            class="send-button"
+                            aria-label="Send"
+                        >
+                            ➤
+                        </button>
+
+                    </div>
+
+                    <p class="input-note">
+                        Mastercommerce uses its own educational knowledge.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="data/economics.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
