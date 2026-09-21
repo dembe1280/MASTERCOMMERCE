@@ -1,638 +1,129 @@
-/* =========================================
-   MASTERCOMMERCE
-   BY PD DEVELOPERS
-   ========================================= */
+// ===============================
+// MASTERCOMMERCE
+// PD DEVELOPERS
+// ===============================
+
+// ---------- DOM ELEMENTS ----------
+
+const sidebar = document.getElementById("sidebar");
+const menuButton = document.getElementById("menuButton");
+const closeSidebarButton = document.getElementById("closeSidebar");
+
+const navItems = document.querySelectorAll(".nav-item");
+const subjectCards = document.querySelectorAll(".subject-card");
+
+const pages = document.querySelectorAll(".page");
+
+const chatInput = document.getElementById("chatInput");
+const sendButton = document.getElementById("sendButton");
+const chatMessages = document.getElementById("chatMessages");
+
+const newChatButton = document.getElementById("newChatButton");
 
 
-/* =========================================
-   ELEMENTS
-   ========================================= */
+// ---------- CHAT HISTORY ----------
 
-const sidebar =
-    document.getElementById("sidebar");
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const newChatButton =
-    document.getElementById("newChat");
-
-const menuItems =
-    document.querySelectorAll(
-        ".menu-item[data-page]"
-    );
-
-const subjectCards =
-    document.querySelectorAll(
-        ".subject-card"
-    );
-
-const pages =
-    document.querySelectorAll(".page");
-
-const chatInput =
-    document.getElementById("chatInput");
-
-const sendButton =
-    document.getElementById("sendButton");
+let conversationHistory = [];
 
 
-/* =========================================
-   PAST PAPER DATABASE
-   TEMPORARY DEMO DATA
-   ========================================= */
-
-const pastPapers = [
-
-    {
-        title: "Accounting Grade 12",
-        subject: "accounting",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Question Paper"
-    },
-
-    {
-        title: "Accounting Grade 12",
-        subject: "accounting",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Memo"
-    },
-
-    {
-        title: "Economics Grade 12",
-        subject: "economics",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Question Paper"
-    },
-
-    {
-        title: "Economics Grade 12",
-        subject: "economics",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Memo"
-    },
-
-    {
-        title: "Mathematics Grade 12",
-        subject: "mathematics",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Question Paper"
-    },
-
-    {
-        title: "Mathematics Grade 12",
-        subject: "mathematics",
-        year: "2025",
-        term: "Final Examination",
-        paper: "Paper 1",
-        type: "Memo"
-    }
-
-];
-
-
-/* =========================================
-   PAGE NAVIGATION
-   ========================================= */
+// ---------- PAGE NAVIGATION ----------
 
 function showPage(pageName) {
 
     pages.forEach(page => {
-
-        page.classList.remove(
-            "active-page"
-        );
-
+        page.classList.remove("active");
     });
 
-
-    const selectedPage =
-        document.getElementById(pageName);
-
+    const selectedPage = document.getElementById(`${pageName}Page`);
 
     if (selectedPage) {
-
-        selectedPage.classList.add(
-            "active-page"
-        );
-
+        selectedPage.classList.add("active");
     }
 
-
-    menuItems.forEach(item => {
-
+    navItems.forEach(item => {
         item.classList.remove("active");
 
-
-        if (
-            item.dataset.page === pageName
-        ) {
-
+        if (item.dataset.page === pageName) {
             item.classList.add("active");
+        }
+    });
 
+    if (sidebar) {
+        sidebar.classList.remove("open");
+    }
+}
+
+
+// ---------- NAVIGATION ----------
+
+navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+        const page = item.dataset.page;
+
+        if (page) {
+            showPage(page);
         }
 
     });
 
+});
 
-    sidebar.classList.remove("open");
 
+// ---------- MOBILE SIDEBAR ----------
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+if (menuButton) {
+
+    menuButton.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+
+}
+
+if (closeSidebarButton) {
+
+    closeSidebarButton.addEventListener("click", () => {
+        sidebar.classList.remove("open");
     });
 
 }
 
 
-/* =========================================
-   SIDEBAR NAVIGATION
-   ========================================= */
-
-menuItems.forEach(item => {
-
-    item.addEventListener(
-        "click",
-        () => {
-
-            const pageName =
-                item.dataset.page;
-
-            showPage(pageName);
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   SUBJECT CARDS
-   ========================================= */
+// ---------- SUBJECT CARDS ----------
 
 subjectCards.forEach(card => {
 
-    card.addEventListener(
-        "click",
-        () => {
+    card.addEventListener("click", () => {
 
-            const pageName =
-                card.dataset.page;
+        const subject = card.dataset.subject;
 
-            showPage(pageName);
-
+        if (subject) {
+            showPage(subject);
         }
-    );
+
+    });
 
 });
 
 
-/* =========================================
-   MOBILE MENU
-   ========================================= */
+// ---------- TEXTAREA ----------
 
-menuButton.addEventListener(
-    "click",
-    () => {
+if (chatInput) {
 
-        sidebar.classList.toggle(
-            "open"
-        );
+    chatInput.addEventListener("input", () => {
 
-    }
-);
-
-
-/* =========================================
-   CLOSE MOBILE MENU
-   ========================================= */
-
-document.addEventListener(
-    "click",
-    event => {
-
-        const clickedSidebar =
-            sidebar.contains(event.target);
-
-        const clickedButton =
-            menuButton.contains(event.target);
-
-
-        if (
-            window.innerWidth <= 800 &&
-            !clickedSidebar &&
-            !clickedButton
-        ) {
-
-            sidebar.classList.remove(
-                "open"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   CHAT INPUT AUTO RESIZE
-   ========================================= */
-
-chatInput.addEventListener(
-    "input",
-    () => {
+        chatInput.style.height = "auto";
 
         chatInput.style.height =
-            "auto";
+            Math.min(chatInput.scrollHeight, 200) + "px";
 
-        chatInput.style.height =
-            Math.min(
-                chatInput.scrollHeight,
-                150
-            ) + "px";
+    });
 
-    }
-);
 
+    chatInput.addEventListener("keydown", event => {
 
-/* =========================================
-   ESCAPE HTML
-   ========================================= */
-
-function escapeHTML(text) {
-
-    const div =
-        document.createElement("div");
-
-    div.textContent = text;
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================================
-   CREATE MESSAGE
-   ========================================= */
-
-function createMessage(
-    text,
-    type
-) {
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        `chat-message ${type}`;
-
-
-    message.innerHTML = `
-
-        <div class="message-content">
-            ${escapeHTML(text)}
-        </div>
-
-    `;
-
-
-    return message;
-
-}
-
-
-/* =========================================
-   DEMO AI RESPONSE
-   ========================================= */
-
-function getDemoResponse(question) {
-
-    const q =
-        question.toLowerCase();
-
-
-    /* ACCOUNTING */
-
-    if (
-        q.includes("debit") ||
-        q.includes("credit")
-    ) {
-
-        return `Let's make it simple.
-
-A debit is the left side of an accounting entry.
-
-A credit is the right side.
-
-Think of it like this:
-
-DEBIT = LEFT
-CREDIT = RIGHT
-
-Example:
-
-A business receives R1 000 cash.
-
-Debit: Bank R1 000
-Credit: Capital R1 000
-
-We can practise more questions together.`;
-
-    }
-
-
-    /* DEPRECIATION */
-
-    if (
-        q.includes("depreciation")
-    ) {
-
-        return `Depreciation is simply the decrease in the value of an asset over time.
-
-For example:
-
-A business buys a vehicle for R100 000.
-
-After using it for some years, the vehicle is no longer worth R100 000.
-
-That decrease in value is called depreciation.
-
-I can teach you the different depreciation methods step by step.`;
-
-    }
-
-
-    /* ECONOMICS */
-
-    if (
-        q.includes("demand") ||
-        q.includes("supply")
-    ) {
-
-        return `Let's make it easy.
-
-DEMAND means how much consumers want to buy.
-
-SUPPLY means how much producers want to sell.
-
-Example:
-
-If the price of a product falls, consumers will normally want to buy more.
-
-That is the basic idea behind the law of demand.
-
-Ask me for a graph or a practice question next.`;
-
-    }
-
-
-    /* INFLATION */
-
-    if (
-        q.includes("inflation")
-    ) {
-
-        return `Inflation means that the general prices of goods and services increase over time.
-
-Simple example:
-
-Today R100 can buy a certain basket of goods.
-
-If prices increase, that same R100 may buy fewer goods later.
-
-So inflation reduces the purchasing power of money.
-
-I can explain the causes, effects and types of inflation next.`;
-
-    }
-
-
-    /* MATHEMATICS */
-
-    if (
-        q.includes("solve") ||
-        q.includes("equation") ||
-        q.includes("math")
-    ) {
-
-        return `Let's solve it step by step.
-
-Example:
-
-2x + 4 = 10
-
-STEP 1
-
-Subtract 4 from both sides.
-
-2x = 6
-
-STEP 2
-
-Divide both sides by 2.
-
-x = 3
-
-ANSWER:
-
-x = 3
-
-If you give me your actual maths question, I will break it down into small steps.`;
-
-    }
-
-
-    /* PERCENTAGE */
-
-    if (
-        q.includes("percentage") ||
-        q.includes("percent")
-    ) {
-
-        return `Let's make percentages easy.
-
-Example:
-
-What is 20% of R500?
-
-Step 1:
-
-Convert 20% to a decimal.
-
-20 ÷ 100 = 0.20
-
-Step 2:
-
-Multiply.
-
-0.20 × R500 = R100
-
-ANSWER:
-
-20% of R500 = R100`;
-
-    }
-
-
-    /* DEFAULT */
-
-    return `I'm ready to help you learn.
-
-Try asking:
-
-"Explain debits and credits."
-
-"Teach me depreciation."
-
-"What is inflation?"
-
-"Explain demand and supply."
-
-"Solve 2x + 4 = 10."
-
-"Give me a Grade 12 Accounting question."
-
-"Teach me percentages."
-
-Mastercommerce will eventually connect to a full AI tutor that can teach you interactively.`;
-
-}
-
-
-/* =========================================
-   SEND MESSAGE
-   ========================================= */
-
-function sendMessage() {
-
-    const question =
-        chatInput.value.trim();
-
-
-    if (!question) {
-        return;
-    }
-
-
-    let conversation =
-        document.querySelector(
-            ".conversation"
-        );
-
-
-    if (!conversation) {
-
-        conversation =
-            document.createElement("div");
-
-        conversation.className =
-            "conversation";
-
-
-        const homePage =
-            document.getElementById("home");
-
-
-        homePage.insertBefore(
-            conversation,
-            document.querySelector(
-                ".chat-area"
-            )
-        );
-
-    }
-
-
-    /* USER */
-
-    const userMessage =
-        createMessage(
-            question,
-            "user"
-        );
-
-
-    conversation.appendChild(
-        userMessage
-    );
-
-
-    /* CLEAR */
-
-    chatInput.value = "";
-
-    chatInput.style.height =
-        "auto";
-
-
-    /* RESPONSE */
-
-    setTimeout(
-        () => {
-
-            const response =
-                getDemoResponse(
-                    question
-                );
-
-
-            const assistantMessage =
-                createMessage(
-                    response,
-                    "assistant"
-                );
-
-
-            conversation.appendChild(
-                assistantMessage
-            );
-
-
-            assistantMessage.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-        },
-        600
-    );
-
-}
-
-
-/* =========================================
-   SEND BUTTON
-   ========================================= */
-
-sendButton.addEventListener(
-    "click",
-    sendMessage
-);
-
-
-/* =========================================
-   ENTER TO SEND
-   ========================================= */
-
-chatInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key === "Enter" &&
-            !event.shiftKey
-        ) {
+        if (event.key === "Enter" && !event.shiftKey) {
 
             event.preventDefault();
 
@@ -640,335 +131,481 @@ chatInput.addEventListener(
 
         }
 
+    });
+
+}
+
+
+// ---------- HTML SAFETY ----------
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+// ---------- ADD MESSAGE ----------
+
+function createMessage(role, text) {
+
+    if (!chatMessages) return;
+
+    const message = document.createElement("div");
+
+    message.className = `message ${role}`;
+
+    if (role === "user") {
+
+        message.innerHTML = `
+            <div class="message-content">
+                ${escapeHTML(text)}
+            </div>
+        `;
+
+    } else {
+
+        message.innerHTML = `
+            <div class="assistant-avatar">M</div>
+
+            <div class="message-content">
+                ${escapeHTML(text).replace(/\n/g, "<br>")}
+            </div>
+        `;
+
     }
-);
+
+    chatMessages.appendChild(message);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    return message;
+}
 
 
-/* =========================================
-   NEW CHAT
-   ========================================= */
+// ---------- TYPING MESSAGE ----------
 
-newChatButton.addEventListener(
-    "click",
-    () => {
+function createTypingMessage() {
 
-        const conversation =
-            document.querySelector(
-                ".conversation"
+    if (!chatMessages) return null;
+
+    const message = document.createElement("div");
+
+    message.className = "message assistant";
+
+    message.innerHTML = `
+        <div class="assistant-avatar">M</div>
+
+        <div class="message-content typing">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+
+    chatMessages.appendChild(message);
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    return message;
+}
+
+
+// ---------- SEND MESSAGE ----------
+
+async function sendMessage() {
+
+    const question = chatInput.value.trim();
+
+    if (!question) return;
+
+    createMessage("user", question);
+
+    chatInput.value = "";
+
+    chatInput.style.height = "auto";
+
+    sendButton.disabled = true;
+
+    const typingMessage = createTypingMessage();
+
+
+    try {
+
+        const response = await fetch("http://localhost:3000/api/chat", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                message: question,
+
+                history: conversationHistory
+
+            })
+
+        });
+
+
+        const data = await response.json();
+
+
+        if (typingMessage) {
+            typingMessage.remove();
+        }
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.error || "Something went wrong."
             );
-
-
-        if (conversation) {
-
-            conversation.remove();
 
         }
 
 
-        chatInput.value = "";
+        createMessage("assistant", data.answer);
 
-        chatInput.style.height =
-            "auto";
 
+        // Save conversation
+
+        conversationHistory.push({
+
+            role: "user",
+
+            content: question
+
+        });
+
+
+        conversationHistory.push({
+
+            role: "assistant",
+
+            content: data.answer
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        if (typingMessage) {
+            typingMessage.remove();
+        }
+
+        createMessage(
+            "assistant",
+            "Sorry, I couldn't connect to Mastercommerce AI. Make sure the server is running."
+        );
+
+    }
+
+
+    sendButton.disabled = false;
+
+    chatInput.focus();
+
+}
+
+
+// ---------- SEND BUTTON ----------
+
+if (sendButton) {
+
+    sendButton.addEventListener("click", sendMessage);
+
+}
+
+
+// ---------- NEW CHAT ----------
+
+if (newChatButton) {
+
+    newChatButton.addEventListener("click", () => {
+
+        conversationHistory = [];
+
+        if (chatMessages) {
+            chatMessages.innerHTML = "";
+        }
+
+        createMessage(
+            "assistant",
+            "Hi! I'm Mastercommerce AI. 👋\n\nI can help you learn Accounting, Economics and Mathematics.\n\nWhat would you like to learn today?"
+        );
 
         showPage("home");
 
         chatInput.focus();
 
-    }
-);
-
-
-/* =========================================
-   TOPIC BUTTONS
-   ========================================= */
-
-const topicButtons =
-    document.querySelectorAll(
-        ".topic"
-    );
-
-
-topicButtons.forEach(button => {
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            const topic =
-                button
-                    .querySelector("strong")
-                    .textContent;
-
-
-            showPage("home");
-
-
-            chatInput.value =
-                `Teach me ${topic} in the easiest way possible.`;
-
-
-            chatInput.focus();
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   PAST PAPER VARIABLES
-   ========================================= */
-
-const papersContainer =
-    document.getElementById(
-        "papersContainer"
-    );
-
-const emptyPapers =
-    document.getElementById(
-        "emptyPapers"
-    );
-
-const paperCount =
-    document.getElementById(
-        "paperCount"
-    );
-
-const paperSearch =
-    document.getElementById(
-        "paperSearch"
-    );
-
-
-let selectedPaperFilter =
-    "all";
-
-
-/* =========================================
-   DISPLAY PAST PAPERS
-   ========================================= */
-
-function displayPapers() {
-
-    if (!papersContainer) {
-        return;
-    }
-
-
-    const searchText =
-        paperSearch
-            ? paperSearch.value
-                .toLowerCase()
-                .trim()
-            : "";
-
-
-    const filteredPapers =
-        pastPapers.filter(
-            paper => {
-
-                const matchesSubject =
-                    selectedPaperFilter === "all" ||
-                    paper.subject ===
-                    selectedPaperFilter;
-
-
-                const matchesSearch =
-                    paper.title
-                        .toLowerCase()
-                        .includes(searchText) ||
-
-                    paper.year
-                        .toLowerCase()
-                        .includes(searchText) ||
-
-                    paper.paper
-                        .toLowerCase()
-                        .includes(searchText);
-
-
-                return (
-                    matchesSubject &&
-                    matchesSearch
-                );
-
-            }
-        );
-
-
-    papersContainer.innerHTML =
-        "";
-
-
-    paperCount.textContent =
-        `${filteredPapers.length} paper${
-            filteredPapers.length === 1
-                ? ""
-                : "s"
-        }`;
-
-
-    if (
-        filteredPapers.length === 0
-    ) {
-
-        emptyPapers.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    emptyPapers.style.display =
-        "none";
-
-
-    filteredPapers.forEach(
-        paper => {
-
-            const card =
-                document.createElement(
-                    "div"
-                );
-
-
-            card.className =
-                "paper-card";
-
-
-            card.innerHTML = `
-
-                <div class="paper-icon">
-                    📄
-                </div>
-
-                <div class="paper-info">
-
-                    <h3>
-                        ${escapeHTML(
-                            paper.title
-                        )}
-                    </h3>
-
-                    <p>
-                        ${escapeHTML(
-                            paper.year
-                        )}
-                        •
-                        ${escapeHTML(
-                            paper.term
-                        )}
-                        •
-                        ${escapeHTML(
-                            paper.paper
-                        )}
-                        •
-                        ${escapeHTML(
-                            paper.type
-                        )}
-                    </p>
-
-                </div>
-
-                <div class="paper-actions">
-
-                    <button
-                        class="paper-button primary"
-                        onclick="openPaper()">
-                        View
-                    </button>
-
-                </div>
-
-            `;
-
-
-            papersContainer.appendChild(
-                card
-            );
-
-        }
-    );
+    });
 
 }
 
 
-/* =========================================
-   PAPER FILTERS
-   ========================================= */
+// ---------- TOPIC BUTTONS ----------
 
-const filters =
-    document.querySelectorAll(
-        ".filter"
-    );
+const topicButtons = document.querySelectorAll(".topic-button");
+
+topicButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const topic = button.dataset.topic;
+
+        showPage("home");
+
+        chatInput.value =
+            `Teach me ${topic} in the easiest way possible.`;
+
+        chatInput.focus();
+
+        chatInput.dispatchEvent(new Event("input"));
+
+    });
+
+});
 
 
-filters.forEach(filter => {
+// ---------- PAST PAPERS ----------
 
-    filter.addEventListener(
-        "click",
-        () => {
+const pastPapers = [
 
-            filters.forEach(item => {
+    {
+        subject: "accounting",
+        year: "2025",
+        title: "Accounting Grade 12 Final Examination Paper 1",
+        type: "Question Paper",
+        file: "#"
+    },
 
-                item.classList.remove(
-                    "active"
-                );
+    {
+        subject: "accounting",
+        year: "2025",
+        title: "Accounting Grade 12 Final Examination Paper 1",
+        type: "Memo",
+        file: "#"
+    },
+
+    {
+        subject: "economics",
+        year: "2025",
+        title: "Economics Grade 12 Final Examination Paper 1",
+        type: "Question Paper",
+        file: "#"
+    },
+
+    {
+        subject: "economics",
+        year: "2025",
+        title: "Economics Grade 12 Final Examination Paper 1",
+        type: "Memo",
+        file: "#"
+    },
+
+    {
+        subject: "mathematics",
+        year: "2025",
+        title: "Mathematics Grade 12 Final Examination Paper 1",
+        type: "Question Paper",
+        file: "#"
+    },
+
+    {
+        subject: "mathematics",
+        year: "2025",
+        title: "Mathematics Grade 12 Final Examination Paper 1",
+        type: "Memo",
+        file: "#"
+    }
+
+];
+
+
+const paperSearch = document.getElementById("paperSearch");
+const paperCount = document.getElementById("paperCount");
+const papersContainer = document.getElementById("papersContainer");
+const emptyPapers = document.getElementById("emptyPapers");
+
+let selectedPaperFilter = "all";
+
+
+// ---------- PAPER FILTER ----------
+
+document.querySelectorAll(".paper-filter").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        document.querySelectorAll(".paper-filter").forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        selectedPaperFilter = button.dataset.filter;
+
+        displayPapers();
+
+    });
+
+});
+
+
+// ---------- PAPER SEARCH ----------
+
+if (paperSearch) {
+
+    paperSearch.addEventListener("input", displayPapers);
+
+}
+
+
+// ---------- DISPLAY PAPERS ----------
+
+function displayPapers() {
+
+    if (!papersContainer) return;
+
+    const search =
+        paperSearch?.value.toLowerCase().trim() || "";
+
+    const filtered = pastPapers.filter(paper => {
+
+        const matchesFilter =
+            selectedPaperFilter === "all" ||
+            paper.subject === selectedPaperFilter;
+
+        const searchableText =
+            `${paper.title} ${paper.subject} ${paper.year} ${paper.type}`
+                .toLowerCase();
+
+        const matchesSearch =
+            searchableText.includes(search);
+
+        return matchesFilter && matchesSearch;
+
+    });
+
+
+    papersContainer.innerHTML = "";
+
+
+    if (paperCount) {
+        paperCount.textContent =
+            `${filtered.length} paper${filtered.length === 1 ? "" : "s"}`;
+    }
+
+
+    if (filtered.length === 0) {
+
+        if (emptyPapers) {
+            emptyPapers.style.display = "block";
+        }
+
+        return;
+
+    }
+
+
+    if (emptyPapers) {
+        emptyPapers.style.display = "none";
+    }
+
+
+    filtered.forEach(paper => {
+
+        const card = document.createElement("div");
+
+        card.className = "paper-card";
+
+        card.innerHTML = `
+
+            <div class="paper-icon">
+                📄
+            </div>
+
+            <div class="paper-info">
+
+                <h3>
+                    ${escapeHTML(paper.title)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(paper.year)}
+                    ·
+                    ${escapeHTML(paper.type)}
+                </p>
+
+            </div>
+
+            <button class="paper-open">
+                Open
+            </button>
+
+        `;
+
+
+        card.querySelector(".paper-open")
+            .addEventListener("click", () => {
+
+                openPaper(paper);
 
             });
 
 
-            filter.classList.add(
-                "active"
-            );
+        papersContainer.appendChild(card);
 
-
-            selectedPaperFilter =
-                filter.dataset.filter ||
-                "all";
-
-
-            displayPapers();
-
-        }
-    );
-
-});
-
-
-/* =========================================
-   PAPER SEARCH
-   ========================================= */
-
-if (paperSearch) {
-
-    paperSearch.addEventListener(
-        "input",
-        displayPapers
-    );
+    });
 
 }
 
 
-/* =========================================
-   OPEN PAPER
-   ========================================= */
+// ---------- OPEN PAPER ----------
 
-function openPaper() {
+function openPaper(paper) {
+
+    if (paper.file && paper.file !== "#") {
+
+        window.open(
+            paper.file,
+            "_blank"
+        );
+
+        return;
+
+    }
+
 
     alert(
-        "The PDF viewer and download system will be connected when we build the Mastercommerce database and admin upload system."
+        "This past paper will be connected to the Mastercommerce paper library when the admin upload system is added."
     );
 
 }
 
 
-/* =========================================
-   START
-   ========================================= */
+// ---------- INITIALISE ----------
 
 displayPapers();
 
 showPage("home");
+
+
+// ---------- FIRST AI MESSAGE ----------
+
+if (chatMessages && chatMessages.children.length === 0) {
+
+    createMessage(
+        "assistant",
+        "Hi! I'm Mastercommerce AI. 👋\n\nI can help you learn Accounting, Economics and Mathematics in simple English.\n\nAsk me anything."
+    );
+
+}
