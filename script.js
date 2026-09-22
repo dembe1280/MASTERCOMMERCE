@@ -105,7 +105,33 @@ document.addEventListener("DOMContentLoaded", () => {
             answer:
                 "Equity is the owner's residual interest in the assets of a business after deducting liabilities.\n\nEquity = Assets - Liabilities.\n\nEquity normally increases through owner contributions and profits and decreases through drawings and losses."
         },
+        {
+            keyword: ["life is hard", "school is hard", "i want to give up"],
+            answer:
+                "Every successful person has faced moments when they wanted to quit. The difference is that they chose to take one more step forward instead of giving up.
 
+School is not just about passing exams. It teaches discipline, problem-solving, patience, and perseverance. The challenges you face today are helping build the strength you will need tomorrow.
+
+When you feel like quitting, ask yourself:
+
+Why did I start?
+What dreams do I want to achieve?
+How will I feel in five years if I give up now?
+What small step can I take today instead of quitting?
+
+Remember:
+
+"Success is not about never falling down. It is about getting up every time you fall."
+
+Practical Advice
+Focus on one day at a time, not the whole journey.
+Ask teachers, friends, or family for help when subjects become difficult.
+Celebrate small achievements.
+Take breaks when stressed, but don't abandon your goals.
+Believe that improvement comes with effort and time.
+Encouraging Words
+You may be struggling today, but that does not mean you are a failure. Difficult seasons do not last forever. Your education can open doors and create opportunities that may not be available otherwise Don't quit because it's hard. Rest if you must, ask for help if you need it, but keep moving forward. Your future self will thank you for not giving up 🌟📚💪."
+},
         {
             keywords: ["revenue", "income"],
             answer:
