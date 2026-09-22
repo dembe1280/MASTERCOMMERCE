@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#ffffff">
+
+    <title>Mastercommerce</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">M</div>
+
+            <div class="brand-info">
+                <div class="brand-text">Mastercommerce</div>
+                <div class="brand-version">v1.0.0</div>
+            </div>
+        </div>
+
+        <button class="new-chat" id="newChatBtn">
+            <span class="new-chat-icon">+</span>
+            <span>New chat</span>
+        </button>
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-page="home">
+                <span class="nav-icon"></span>
+                <span>Home</span>
+            </button>
+
+            <button class="nav-item" data-page="about">
+                <span class="nav-icon"></span>
+                <span>About</span>
+            </button>
+
+            <button class="nav-item" data-page="settings">
+                <span class="nav-icon"></span>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="developer-card">
+                <div class="developer-title">
+                    PD | Web & App Development
+                </div>
+
+                <div class="developer-text">
+                    Built for Accounting, Economics and Mathematics learners.
+                </div>
+            </div>
+
+            <div class="sidebar-version">
+                Mastercommerce v1.0.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MOBILE OVERLAY -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- MOBILE HEADER -->
+        <header class="mobile-header">
+
+            <button
+                class="menu-button"
+                id="menuButton"
+                aria-label="Open menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="mobile-brand">
+                <div class="mobile-logo">M</div>
+                <strong>Mastercommerce</strong>
+            </div>
+
+        </header>
+
+
+        <!-- CHAT -->
+        <section class="chat-container">
+
+            <div class="chat-messages" id="chatMessages">
+
+                <!-- WELCOME -->
+                <div class="welcome" id="welcome">
+
+                    <div class="welcome-logo">
+                        M
+                    </div>
+
+                    <h1>
+                        What would you like to learn?
+                    </h1>
+
+                    <p>
+                        Ask a question about Accounting, Economics or Mathematics.
+                    </p>
+
+
+                    <div class="subject-cards">
+
+                        <div class="subject-card">
+                            <div class="subject-card-icon accounting-icon">
+                                ₿
+                            </div>
+
+                            <div>
+                                <strong>Accounting</strong>
+                                <span>
+                                    Learn financial accounting, auditing,
+                                    tax and more.
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="subject-card">
+                            <div class="subject-card-icon economics-icon">
+                                %
+                            </div>
+
+                            <div>
+                                <strong>Economics</strong>
+                                <span>
+                                    Understand markets, inflation,
+                                    GDP and economic policies.
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="subject-card">
+                            <div class="subject-card-icon mathematics-icon">
+                                ∑
+                            </div>
+
+                            <div>
+                                <strong>Mathematics</strong>
+                                <span>
+                                    Get help with algebra, functions,
+                                    calculus, probability and more.
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INPUT -->
+            <div class="input-area">
+
+                <div class="input-box">
+
+                    <textarea
+                        id="questionInput"
+                        rows="1"
+                        placeholder="Ask Mastercommerce..."
+                        autocomplete="off"
+                        spellcheck="true"
+                    ></textarea>
+
+                    <button
+                        id="sendButton"
+                        class="send-button"
+                        aria-label="Send message"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M5 12H19"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                            />
+
+                            <path
+                                d="M13 6L19 12L13 18"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                    </button>
+
+                </div>
+
+                <div class="input-note">
+                    Mastercommerce can make mistakes. Check important answers.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
