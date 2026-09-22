@@ -2275,3 +2275,53 @@ Can you please repeat your question in an understandable way?`;
     questionInput.focus();
 
 });
+// ===============================
+// MASTERCOMMERCE KNOWLEDGE BASE
+// ===============================
+
+let economicsKnowledge = "";
+
+async function loadKnowledge() {
+    try {
+        const response = await fetch("knowledge/economics.txt");
+
+        if (!response.ok) {
+            throw new Error("Could not load economics knowledge.");
+        }
+
+        economicsKnowledge = await response.text();
+
+        console.log("Mastercommerce economics knowledge loaded.");
+    } catch (error) {
+        console.error("Knowledge base error:", error);
+    }
+}
+
+// Search the knowledge base
+function searchEconomics(question) {
+    if (!economicsKnowledge) {
+        return "My economics knowledge is still loading.";
+    }
+
+    const words = question
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(word => word.length > 3);
+
+    const sections = economicsKnowledge.split(/\n\s*\n/);
+
+    const matches = sections.filter(section => {
+        const text = section.toLowerCase();
+
+        return words.some(word => text.includes(word));
+    });
+
+    if (matches.length === 0) {
+        return "I could not find this topic in my economics knowledge base yet.";
+    }
+
+    return matches.slice(0, 3).join("\n\n");
+}
+
+// Load the knowledge when the app starts
+loadKnowledge();
