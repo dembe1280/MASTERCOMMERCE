@@ -1386,7 +1386,7 @@ Version: ${developerInformation.version}`;
        ========================================================= */
 async function askOpenAI(question, instructions) {
     try {
-        const response = await fetch("https://YOUR-VERCEL-APP.vercel.app/api/chat", {
+        const response = await fetch("https://mastercommerce-2lpz1xjc8-dembe1280.vercel.app/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
