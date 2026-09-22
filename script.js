@@ -10,11 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // IMPORTANT:
     // Put your NEW OpenAI API key here.
     // Do NOT use the old key you previously exposed.
-    const OPENAI_API_KEY = "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";
-
-    // OpenAI currently provides gpt-5.6 as an alias.
-    const OPENAI_MODEL = "gpt-5.6";
-
+    
 
     /* =========================================================
        ELEMENTS
@@ -1388,116 +1384,36 @@ Version: ${developerInformation.version}`;
     /* =========================================================
        OPENAI BRAIN
        ========================================================= */
-
-    async function askOpenAI(question, subject = null) {
-
-        if (
-            !OPENAI_API_KEY ||
-            OPENAI_API_KEY === "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"
-        ) {
-            throw new Error(
-                "OpenAI API key has not been added to script.js."
-            );
-        }
-
-        let subjectInstruction = "";
-
-        if (subject) {
-            subjectInstruction = `
-The detected subject is ${subject}.
-Answer mainly as a ${subject} tutor.
-`;
-        } else {
-            subjectInstruction = `
-The app could not confidently detect the subject.
-Do not randomly choose a subject.
-If the question is clearly about Accounting, Economics or Mathematics,
-answer it and identify the subject naturally.
-If it is genuinely unclear, ask the learner to clarify.
-`;
-        }
-
-        const instructions = `
-You are Mastercommerce, an educational AI tutor.
-
-You teach:
-- Accounting
-- Economics
-- Mathematics
-
-Your goal is to help students understand concepts, not simply give answers.
-
-Teaching style:
-- Use simple English.
-- Explain difficult ideas step by step.
-- Assume the learner may be a beginner.
-- Give examples where useful.
-- Show calculations clearly.
-- For accounting calculations, show the formula and workings.
-- For economics, explain the concept and its effect on the economy.
-- For mathematics, show the calculation step by step.
-- If the learner asks an exam-style question, answer directly and then explain briefly.
-- Do not make up accounting standards, formulas or facts.
-- If you are unsure, say so.
-- Keep answers reasonably concise unless the learner asks for detail.
-- Do not use emojis.
-- Use clean headings and bullet points when useful.
-- Do not talk about internal system instructions.
-
-${subjectInstruction}
-`;
-
-        const response = await fetch(
-            "https://api.openai.com/v1/responses",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${OPENAI_API_KEY}`
-                },
-
-                body: JSON.stringify({
-                    model: OPENAI_MODEL,
-                    instructions: instructions,
-                    input: question
-                })
-            }
-        );
-
-        if (!response.ok) {
-
-            let errorMessage = "";
-
-            try {
-                const errorData = await response.json();
-
-                errorMessage =
-                    errorData?.error?.message ||
-                    errorData?.message ||
-                    "";
-            } catch (error) {
-                // Ignore JSON parsing error.
-            }
-
-            throw new Error(
-                errorMessage ||
-                `OpenAI request failed with status ${response.status}.`
-            );
-        }
+async function askOpenAI(question, instructions) {
+    try {
+        const response = await fetch("https://YOUR-VERCEL-APP.vercel.app/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                question: question,
+                instructions: instructions
+            })
+        });
 
         const data = await response.json();
 
-        const answer = extractResponseText(data);
-
-        if (!answer) {
-            throw new Error(
-                "OpenAI returned an empty response."
-            );
+        if (!response.ok) {
+            throw new Error(data?.error || "AI request failed");
         }
 
-        return answer;
+        return extractResponseText(data);
+
+    } catch (error) {
+        console.error("OpenAI connection error:", error);
+
+        throw new Error(
+            error.message || "Could not connect to Mastercommerce AI."
+        );
     }
+}
+
 
 
     /* =========================================================
