@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // IMPORTANT:
     // Put your NEW OpenAI API key here.
     // Do NOT use the old key you previously exposed.
-    const OPENAI_API_KEY = "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";
+    const OPENAI_API_KEY = "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";
 
     // OpenAI currently provides gpt-5.6 as an alias.
     const OPENAI_MODEL = "gpt-5.6";
