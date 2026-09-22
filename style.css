@@ -790,3 +790,74 @@ body.reduced-motion * {
     animation: none !important;
     transition: none !important;
 }
+/* =========================================================
+   MASTERCOMMERCE - FINAL SMALL UI FIXES
+   ========================================================= */
+
+/* Keep welcome content above the fixed input area */
+#chatContainer {
+    padding-bottom: 150px;
+}
+
+.welcome-screen,
+#welcomeScreen {
+    padding-bottom: 40px;
+}
+
+/* Keep subject cards/text away from the input */
+.subject-cards,
+.subject-grid,
+.subject-card {
+    margin-bottom: 24px;
+}
+
+/* Clean professional send button */
+#sendButton {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+#sendButton svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+#sendButton svg,
+#sendButton path,
+#sendButton line,
+#sendButton polyline {
+    stroke-width: 2.2;
+}
+
+@media (max-width: 800px) {
+
+    #chatContainer {
+        padding-bottom: 145px;
+    }
+
+    .welcome-screen,
+    #welcomeScreen {
+        padding-bottom: 35px;
+    }
+
+    #sendButton {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 11px;
+    }
+
+    #sendButton svg {
+        width: 17px;
+        height: 17px;
+    }
+}
