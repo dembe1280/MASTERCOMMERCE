@@ -274,7 +274,7 @@ button {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 18px;
+    bottom: 24px;
     z-index: 30;
     width: min(850px, calc(100% - 32px));
     margin: 0 auto;
