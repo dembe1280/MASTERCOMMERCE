@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         location: "Limpopo, South Africa",
         education: "University of Venda, BCom in Accounting",
         product: "Mastercommerce",
-        version: "v1.1.0 (now with jokes)"
+        version: "v1.1.0"
     };
 
 
