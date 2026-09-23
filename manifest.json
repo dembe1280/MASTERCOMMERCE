@@ -1,0 +1,19 @@
+{
+  "name": "Mastercommerce",
+  "short_name": "Mastercommerce",
+  "description": "An educational learning platform for Accounting, Economics and Mathematics.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "icon.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
